@@ -1,9 +1,10 @@
-[submodule "monitor/freertos/freertos-addons"]
-	path = monitor/freertos/freertos-addons
-	url = https://github.com/3-pin/freertos-addons.git
-[submodule "monitor/lib/libopencm3"]
-	path = monitor/lib/libopencm3
+
+[submodule "lib/libopencm3"]
+	path = lib/libopencm3
 	url = https://github.com/thirdpin/libopencm3.git
-[submodule "monitor/lib/libopencm3_cpp_extensions"]
-	path = monitor/lib/libopencm3_cpp_extensions
+[submodule "lib/libopencm3_cpp_extensions"]
+	path = lib/libopencm3_cpp_extensions
 	url = https://github.com/thirdpin/libopencm3_cpp_extensions.git
+[submodule "freertos/freertos-addons"]
+	path = freertos/freertos-addons
+	url = https://github.com/3-pin/freertos-addons.git
