@@ -5,6 +5,7 @@
 
 #include <config/HwConfig.h>
 #include <config/TasksConfig.h>
+#include <utils/Logger.h>
 #include <hw/Led.hpp>
 
 namespace tasks {
@@ -20,6 +21,7 @@ public:
 	void Run();
 
 private:
+	utils::Logger _logger;
 	hw::Led _led;
 };
 
