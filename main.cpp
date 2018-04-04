@@ -2,6 +2,8 @@
 
 #include <hw/System.hpp>
 
+#include <tasks/LoggerTask.h>
+#include <tasks/MonitorTask.h>
 #include <tasks/GreenLedTask.h>
 #include <tasks/RedLedTask.h>
 #include <tasks/YellowLedTask.h>
@@ -43,10 +45,10 @@ void operator delete[](void* p)
     vPortFree(p);
 }
 
-extern "C" {
+BEGIN_DECLS
 void* __dso_handle;
 void* _fini;
-}
+END_DECLS
 
 int main()
 {
@@ -54,6 +56,11 @@ int main()
     hw::system::systick_init();
     hw::system::irq_disable();
 
+    auto logger_task     = new tasks::LoggerTask();
+
+#ifdef MONITOR
+    auto monitor_task    = new tasks::MonitorTask();
+#endif
 	auto green_led_task  = new tasks::GreenLedTask();
 	auto red_led_task    = new tasks::RedLedTask();
 	auto yellow_led_task = new tasks::YellowLedTask();
@@ -64,6 +71,18 @@ int main()
 
     return 0;
 }
+
+#if configGENERATE_RUN_TIME_STATS == 1
+void vConfigureTimerForRunTimeStats(void)
+{
+    tasks::MonitorTask::config_timer();
+}
+
+unsigned long vGetTimerForRunTimeStats(void)
+{
+    return (tasks::MonitorTask::get_counter_value());
+}
+#endif
 
 void vAssertCalled(const char* pcFile, unsigned long ulLine)
 {
@@ -76,3 +95,29 @@ void vAssertCalled(const char* pcFile, unsigned long ulLine)
     }
     rtos::CriticalSection::Exit();
 }
+
+BEGIN_DECLS
+void vApplicationMallocFailedHook()
+{
+    rtos::CriticalSection::Enter();
+    {
+        while (true)
+        {
+            portNOP();
+        }
+    }
+    rtos::CriticalSection::Exit();
+}
+
+void vApplicationStackOverflowHook(TaskHandle_t xTask, char* pcTaskName)
+{
+    rtos::CriticalSection::Enter();
+    {
+        while (true)
+        {
+            portNOP();
+        }
+    }
+    rtos::CriticalSection::Exit();
+}
+END_DECLS
