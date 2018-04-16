@@ -1234,11 +1234,11 @@ ipcp_up(fsm *f)
     ho->hisaddr = wo->hisaddr;
   }
 
-  if (ho->hisaddr == 0) {
-    IPCPDEBUG(LOG_ERR, ("Could not determine remote IP address\n"));
-    ipcp_close(f->unit, "Could not determine remote IP address");
-    return;
-  }
+//  if (ho->hisaddr == 0) {
+//    IPCPDEBUG(LOG_ERR, ("Could not determine remote IP address\n"));
+//    ipcp_close(f->unit, "Could not determine remote IP address");
+//    return;
+//  }
   if (go->ouraddr == 0) {
     IPCPDEBUG(LOG_ERR, ("Could not determine local IP address\n"));
     ipcp_close(f->unit, "Could not determine local IP address");
