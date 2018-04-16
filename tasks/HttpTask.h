@@ -5,24 +5,26 @@
 
 #include <config/HwConfig.h>
 #include <config/TasksConfig.h>
-#include <utils/Logger.h>
 #include <hw/Led.hpp>
+#include <net/GsmModule.h>
 
 namespace tasks {
 
 namespace rtos = cpp_freertos;
 
-class GreenLedTask : public rtos::Thread
+class HttpTask : public rtos::Thread
 {
 public:
-	GreenLedTask();
-	~GreenLedTask() = default;
+	HttpTask();
+	~HttpTask() = default;
 
 	void Run();
 
 private:
-	utils::Logger _logger;
 	hw::Led _led;
+	net::GsmModule* _gsm;
+
+	static void tcpip_init_done(void *arg);
 };
 
 } /* namespace tasks */

@@ -1,4 +1,33 @@
-#pragma once
+/*
+ * This file is part of the pastilda project.
+ * hosted at http://github.com/thirdpin/pastilda
+ *
+ * Copyright (C) 2016  Third Pin LLC
+ * www.thirdpin.ru
+ * www.thirdpin.ru/en/
+ *
+ * Written by:
+ *  Anastasiia Lazareva <a.lazareva@thirdpin.ru>
+ *	Dmitrii Lisin 		<d.lisin@thirdpin.ru>
+ *	Ilya Stolyarov 		<i.stolyarov@thirdpin.ru>
+ *	Pavel Larionov      <p.larionov@thirdpin.ru>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef HW_SYSTEM_HPP_
+#define HW_SYSTEM_HPP_
 
 #include <libopencmsis/core_cm3.h>
 #include <libopencm3/stm32/rcc.h>
@@ -32,9 +61,29 @@ inline void clock_init()
 	rcc_periph_clock_enable(rcc_periph_clken::RCC_GPIOE);
 	rcc_periph_clock_enable(rcc_periph_clken::RCC_GPIOG);
 	rcc_periph_clock_enable(rcc_periph_clken::RCC_GPIOF);
-	rcc_periph_clock_enable(rcc_periph_clken::RCC_UART4);  //logger
-	rcc_periph_clock_enable(rcc_periph_clken::RCC_TIM2);   //monitor
 
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_USART1); //MDB
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_USART2); //MDB
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_USART3); //GSM
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_UART4);  //Multi uart
+
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_TIM2);   //Monitor
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_TIM3);   //BUZZ
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_TIM4);   //USB Host
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_TIM5);   //syscall 1000Hz clock
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_TIM6);   //one wire
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_TIM7);   //user button
+
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_OTGHS);  //USB
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_SDIO);   //SD card
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_DMA2);   //SD card, Power
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_I2C1);   //Accelerometer
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_SYSCFG); //EXTI
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_ADC1);   //Power
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_SPI1);   //Eth module
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_PWR);    //RTC module
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_RTC);    //RTC module
+	rcc_periph_clock_enable(rcc_periph_clken::RCC_BKPSRAM);
 }
 
 inline void irq_disable() {
@@ -56,3 +105,5 @@ inline void systick_init()
 }
 
 } // namespace hw
+
+#endif /* HW_SYSTEM_HPP_ */

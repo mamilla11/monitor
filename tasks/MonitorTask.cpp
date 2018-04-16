@@ -83,7 +83,6 @@ void MonitorTask::Run()
 		}
 
 		rtos::Thread::Delay(delay_time);
-		iwdg_reset();
 	}
 }
 

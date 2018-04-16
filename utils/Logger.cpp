@@ -64,6 +64,26 @@ void Logger::add_str(uint32_t flag, const char * format, ...)
 	va_end(arglist);
 }
 
+void Logger::add_hex(uint32_t flag, uint8_t *buff, uint8_t len)
+{
+	if (not is_flag_enable(flag))
+		return;
+
+	if(!len)
+		return;
+
+	char buffer[765] = {0};
+	uint32_t index = 0;
+
+	for (uint8_t i = 0; i < len; i++)
+	{
+		snprintf(&buffer[index], 4, "%02X ", buff[i]);
+		index += 3;
+	}
+
+	add_buf(flag, buffer, strlen(buffer));
+}
+
 void Logger::add_buf(uint32_t flag, const char *buff, uint16_t len)
 {
 	if(not is_flag_enable(flag))

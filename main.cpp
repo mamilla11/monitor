@@ -2,9 +2,9 @@
 
 #include <hw/System.hpp>
 
+#include <tasks/HttpTask.h>
 #include <tasks/LoggerTask.h>
 #include <tasks/MonitorTask.h>
-#include <tasks/GreenLedTask.h>
 #include <tasks/RedLedTask.h>
 #include <tasks/YellowLedTask.h>
 
@@ -61,8 +61,8 @@ int main()
 #ifdef MONITOR
     auto monitor_task    = new tasks::MonitorTask();
 #endif
-	auto green_led_task  = new tasks::GreenLedTask();
-	auto red_led_task    = new tasks::RedLedTask();
+	auto green_led_task  = new tasks::HttpTask();
+	//auto red_led_task    = new tasks::RedLedTask();
 	auto yellow_led_task = new tasks::YellowLedTask();
 
     rtos::Thread::StartScheduler();

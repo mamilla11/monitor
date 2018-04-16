@@ -37,6 +37,7 @@ public:
 	bool is_flag_enable(uint32_t flags);
 
 	void add_str(uint32_t flag, const char *format, ...);
+	void add_hex(uint32_t flag, uint8_t *buff, uint8_t len);
 	void add_buf(uint32_t flag, const char *buff, uint16_t len);
 
 private:
