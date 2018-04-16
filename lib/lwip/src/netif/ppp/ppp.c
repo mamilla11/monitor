@@ -1816,7 +1816,7 @@ pppInProc(PPPControlRx *pcrx, u_char *s, int l)
         /* If the fcs is invalid, drop the packet. */
         } else if (pcrx->inFCS != PPP_GOODFCS) {
           PPPDEBUG(LOG_INFO,
-                   ("pppInProc[%d]: Dropping bad fcs 0x%"X16_F" proto=0x%"X16_F"\n", 
+                   ("pppInProc[%d]: Dropping bad fcs 0x%"X16_F" proto=0x%" X16_F"\n",
                     pcrx->pd, pcrx->inFCS, pcrx->inProtocol));
           /* Note: If you get lots of these, check for UART frame errors or try different baud rate */
           LINK_STATS_INC(link.chkerr);
