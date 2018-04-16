@@ -97,7 +97,7 @@
                                     									
                                     <listOptionValue builtIn="false" value="STM32F2"/>
                                     									
-                                    <listOptionValue builtIn="false" value="MONITOR"/>
+                                    <listOptionValue builtIn="false" value="FREERTOS"/>
                                     								
                                 </option>
                                 								
@@ -105,13 +105,31 @@
                                     									
                                     <listOptionValue builtIn="false" value="&quot;../&quot;"/>
                                     									
+                                    <listOptionValue builtIn="false" value="../sys"/>
+                                    									
                                     <listOptionValue builtIn="false" value="&quot;../lib&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;../freertos/freertos&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;../config&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="../lib/lwip/src"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="../lib/lwip/src/include"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="../lib/lwip/src/include/lwip"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="../lib/lwip/src/include/ipv4"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="../lib/lwip/port"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;../lib/libopencm3/lib&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;../lib/libopencm3/include&quot;"/>
                                     								
                                 </option>
+                                								
+                                <option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.std.526895567" name="Language standard" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.std" useByScannerDiscovery="true" value="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.std.c11" valueType="enumerated"/>
                                 								
                                 <inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.326858226" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input"/>
                                 							
@@ -123,7 +141,19 @@
                                     									
                                     <listOptionValue builtIn="false" value="&quot;../&quot;"/>
                                     									
+                                    <listOptionValue builtIn="false" value="../sys"/>
+                                    									
                                     <listOptionValue builtIn="false" value="&quot;../lib&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="../lib/lwip/src"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="../lib/lwip/src/include"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="../lib/lwip/src/include/lwip"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="../lib/lwip/src/include/ipv4"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="../lib/lwip/port"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;../freertos/freertos&quot;"/>
                                     									
@@ -155,7 +185,9 @@
                                     									
                                     <listOptionValue builtIn="false" value="CM3EXT_ENABLE_CUSTOM_SYSTICK_SOURCE"/>
                                     									
-                                    <listOptionValue builtIn="false" value="MONITOR"/>
+                                    <listOptionValue builtIn="false" value="FREERTOS"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="HW_REV4"/>
                                     								
                                 </option>
                                 								
@@ -257,7 +289,7 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="freertos/freertos/heap_1.c|freertos/freertos-addons/Linux|freertos/freertos-addons/c|lib/libopencm3" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="lib/lwip/src/core/ipv6|lib/lwip/src/include/ipv6|lib/lwip/src/apps|freertos/freertos/heap_1.c|freertos/freertos-addons/Linux|freertos/freertos-addons/c|lib/libopencm3" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         					
                     </sourceEntries>
                     				
@@ -421,7 +453,7 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="freertos/freertos/heap_1.c|freertos/freertos-addons/Linux|freertos/freertos-addons/c|lib/libopencm3" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="lib/lwip/src/core/ipv6|lib/lwip/src/include/ipv6|lib/lwip/src/apps|freertos/freertos/heap_1.c|freertos/freertos-addons/Linux|freertos/freertos-addons/c|lib/libopencm3" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         					
                     </sourceEntries>
                     				
