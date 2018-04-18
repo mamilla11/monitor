@@ -98,6 +98,8 @@
                                     <listOptionValue builtIn="false" value="STM32F2"/>
                                     									
                                     <listOptionValue builtIn="false" value="FREERTOS"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="MONITOR"/>
                                     								
                                 </option>
                                 								
@@ -188,6 +190,8 @@
                                     <listOptionValue builtIn="false" value="FREERTOS"/>
                                     									
                                     <listOptionValue builtIn="false" value="HW_REV4"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="MONITOR"/>
                                     								
                                 </option>
                                 								
