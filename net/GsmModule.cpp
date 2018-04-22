@@ -34,26 +34,26 @@ bool GsmModule::turn_on(hw::SimSwitcher::Sim sim)
 #endif
 
 	if (not set_power(true)) {
-		_logger.add_str(utils::Logger::Flag::DEBG, "Turn on modem FAIL");
+		//_logger.add_str(utils::Logger::Flag::DEBG, "Turn on modem FAIL");
 		return false;
 	}
 
-	_logger.add_str(utils::Logger::Flag::DEBG, "Turn on modem OK");
+	//_logger.add_str(utils::Logger::Flag::DEBG, "Turn on modem OK");
 
 
 	if (not disable_echo()) {
-		_logger.add_str(utils::Logger::Flag::DEBG, "Disable echo FAIL: %s", received_string.data());
+		//_logger.add_str(utils::Logger::Flag::DEBG, "Disable echo FAIL: %s", received_string.data());
 		return false;
 	}
 
-	_logger.add_str(utils::Logger::Flag::DEBG, "Disable echo OK");
+	//_logger.add_str(utils::Logger::Flag::DEBG, "Disable echo OK");
 
 	if (not wait_net_registration()) {
-		_logger.add_str(utils::Logger::Flag::DEBG, "Net registration FAIL: %s", received_string.data());
+		//_logger.add_str(utils::Logger::Flag::DEBG, "Net registration FAIL: %s", received_string.data());
 		return false;
 	}
 
-	_logger.add_str(utils::Logger::Flag::DEBG, "Net registration OK");
+	//_logger.add_str(utils::Logger::Flag::DEBG, "Net registration OK");
 
 //	if (not wait_gprs_attached()) {
 //		_logger.add_str(utils::Logger::Flag::DEBG, "GPRS attach FAIL: %s", received_string.data());
@@ -77,11 +77,11 @@ bool GsmModule::turn_on(hw::SimSwitcher::Sim sim)
 //		return false;
 
 	if (not enter_data_state("PPP", 1)) {
-		_logger.add_str(utils::Logger::Flag::DEBG, "Enter data state FAIL: %s", received_string.data());
+		//_logger.add_str(utils::Logger::Flag::DEBG, "Enter data state FAIL: %s", received_string.data());
 		return false;
 	}
 
-	_logger.add_str(utils::Logger::Flag::DEBG, "Enter data state OK");
+	//_logger.add_str(utils::Logger::Flag::DEBG, "Enter data state OK");
 
 
 

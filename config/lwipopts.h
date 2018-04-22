@@ -220,29 +220,29 @@ The STM32F4x7 allows computing and verifying the IP, UDP, TCP and ICMP checksums
 #define PPP_THREAD_NAME                 "ppp"
 #define PPP_THREAD_STACKSIZE            5000
 #define PPP_THREAD_PRIO                 1//2
-#define LWIP_DEBUG                      1
-#define PPP_DEBUG                       LWIP_DBG_ON
+//#define LWIP_DEBUG                      1
+//#define PPP_DEBUG                       LWIP_DBG_ON
 #define SYS_LIGHTWEIGHT_PROT            0
-#define TCP_DEBUG                       LWIP_DBG_ON
-#define TCP_INPUT_DEBUG                 LWIP_DBG_ON
-#define TCP_FR_DEBUG                    LWIP_DBG_ON
-#define TCP_RTO_DEBUG                   LWIP_DBG_ON
-#define TCP_WND_DEBUG                   LWIP_DBG_ON
-#define TCP_OUTPUT_DEBUG                LWIP_DBG_ON
-#define TCP_RST_DEBUG                   LWIP_DBG_ON
-#define TCP_QLEN_DEBUG                  LWIP_DBG_ON
-#define TCPIP_DEBUG						LWIP_DBG_ON
+//#define TCP_DEBUG                       LWIP_DBG_ON
+//#define TCP_INPUT_DEBUG                 LWIP_DBG_ON
+//#define TCP_FR_DEBUG                    LWIP_DBG_ON
+//#define TCP_RTO_DEBUG                   LWIP_DBG_ON
+//#define TCP_WND_DEBUG                   LWIP_DBG_ON
+//#define TCP_OUTPUT_DEBUG                LWIP_DBG_ON
+//#define TCP_RST_DEBUG                   LWIP_DBG_ON
+//#define TCP_QLEN_DEBUG                  LWIP_DBG_ON
+//#define TCPIP_DEBUG						LWIP_DBG_ON
 #define CHAP_SUPPORT                    1
 #define PAP_SUPPORT                     1
-#ifdef __cplusplus
-
-extern "C" {
-#endif
-extern void LWIP_PLATFORM_DIAG_(const char* msg, ...);
-#define LWIP_PLATFORM_DIAG(a) LWIP_PLATFORM_DIAG_ a;
-#ifdef __cplusplus
-}
-#endif
+//#ifdef __cplusplus
+//
+//extern "C" {
+//#endif
+//extern void LWIP_PLATFORM_DIAG_(const char* msg, ...);
+//#define LWIP_PLATFORM_DIAG(a) LWIP_PLATFORM_DIAG_ a;
+//#ifdef __cplusplus
+//}
+//#endif
 
 #endif /* __LWIPOPTS_H__ */
 

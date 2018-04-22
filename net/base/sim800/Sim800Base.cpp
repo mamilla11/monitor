@@ -13,7 +13,7 @@ void LWIP_PLATFORM_DIAG_(const char* msg, ...)
 	va_start(arglist, msg);
 	static char temp[1000];
 	vsnprintf (temp,1000,msg, arglist);
-	net::base::sim800::Sim800Base::_logger.add_str(1, temp);
+	//net::base::sim800::Sim800Base::_logger.add_str(1, temp);
 	va_end(arglist);
 }
 
@@ -37,8 +37,8 @@ u32_t sio_read(sio_fd_t fd, u8_t *data, u32_t len)
 
 	if(i > 0) {
 
-		net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "[ IN]");
-		net::base::sim800::Sim800Base::_logger.add_hex(utils::Logger::Flag::DEBG, data, i);
+		//net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "[ IN]");
+		//net::base::sim800::Sim800Base::_logger.add_hex(utils::Logger::Flag::DEBG, data, i);
 	}
 
 	return i;
@@ -133,7 +133,7 @@ Sim800Base::Timer    Sim800Base::_timer;
 Sim800Interrupt*     Sim800Base::_interrupt;
 etlext::queue_atomic<uint8_t, 2060> Sim800Base::_incomming;
 
-utils::Logger Sim800Base::_logger("SIM800");
+//utils::Logger Sim800Base::_logger("SIM800");
 
 Sim800Base::Sim800Base()
 {
@@ -307,7 +307,7 @@ void Sim800Base::delay(uint32_t delay_ms)
 void Sim800Base::send_byte(uint8_t byte)
 {
 	_usart->write_blocking(byte);
-	_logger.add_buf(utils::Logger::Flag::DEBG, (const char *)&byte, 1);
+	//_logger.add_buf(utils::Logger::Flag::DEBG, (const char *)&byte, 1);
 }
 
 void Sim800Base::send_raw(const char *buffer)
@@ -321,7 +321,7 @@ void Sim800Base::send_raw(const char *buffer, uint32_t length)
 		_usart->write_blocking(buffer[symb]);
 
 	if (length > strlen(AT_DELIMITER)) {
-		_logger.add_buf(utils::Logger::Flag::DEBG, buffer, strlen(buffer));
+		//_logger.add_buf(utils::Logger::Flag::DEBG, buffer, strlen(buffer));
 	}
 }
 
@@ -330,8 +330,8 @@ void Sim800Base::send_raw_hex(const uint8_t *buffer, uint32_t length)
 	for (uint32_t symb = 0; symb < length; symb++)
 		_usart->write_blocking(buffer[symb]);
 
-	_logger.add_str(utils::Logger::Flag::DEBG, "[ OUT]");
-	_logger.add_hex(utils::Logger::Flag::DEBG, (uint8_t*)buffer, length);
+	//_logger.add_str(utils::Logger::Flag::DEBG, "[ OUT]");
+	//_logger.add_hex(utils::Logger::Flag::DEBG, (uint8_t*)buffer, length);
 }
 
 bool Sim800Base::search(const char *needle)
@@ -456,7 +456,7 @@ bool Sim800Base::wait_string(uint32_t timeout, uint8_t *result, uint8_t param_co
 			wait_delimiter = false;
 
 			if (received_string.length() > strlen(AT_DELIMITER)) {
-				_logger.add_str(utils::Logger::Flag::DEBG, received_string.data());
+				//_logger.add_str(utils::Logger::Flag::DEBG, received_string.data());
 			}
 
 			for(uint8_t	mx = 0 ; mx < param_count; mx++)
@@ -505,7 +505,7 @@ void Sim800Base::_init(Sim800Base* ptr)
 
 	_interrupt = new Sim800Interrupt(ptr);
 
-	_logger.set_enable_flags(utils::Logger::DEBG);
+	//_logger.set_enable_flags(utils::Logger::DEBG);
 }
 
 // Sim800Interrupt ########################################################################################
