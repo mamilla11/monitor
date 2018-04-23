@@ -75,7 +75,7 @@ public:
 	};
 
 
-    //static utils::Logger _logger;
+    static utils::Logger _logger;
     //#############################################################################################
 
 	static String received_string;

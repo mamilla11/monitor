@@ -1526,7 +1526,7 @@ pppInputThread(void *arg)
       pppInProc(pcrx, pcrx->rxbuf, count);
     } else {
       /* nothing received, give other tasks a chance to run */
-      sys_msleep(1);
+      sys_msleep(10);
     }
   }
 }

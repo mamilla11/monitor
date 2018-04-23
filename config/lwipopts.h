@@ -112,11 +112,10 @@ a lot of data that needs to be copied, this should be set high. */
 /* Define LWIP_DHCP to 1 if you want DHCP configuration of
    interfaces. DHCP is not implemented in lwIP 0.5.1, however, so
    turning this on does currently not work. */
-#define LWIP_DHCP               1
-
+#define LWIP_DHCP               0
 
 /* ---------- UDP options ---------- */
-#define LWIP_UDP                1
+#define LWIP_UDP                0
 #define UDP_TTL                 255
 
 
@@ -220,29 +219,33 @@ The STM32F4x7 allows computing and verifying the IP, UDP, TCP and ICMP checksums
 #define PPP_THREAD_NAME                 "ppp"
 #define PPP_THREAD_STACKSIZE            5000
 #define PPP_THREAD_PRIO                 1//2
-//#define LWIP_DEBUG                      1
-//#define PPP_DEBUG                       LWIP_DBG_ON
+#define LWIP_DEBUG                      1
+#define PPP_DEBUG                       LWIP_DBG_ON
 #define SYS_LIGHTWEIGHT_PROT            0
-//#define TCP_DEBUG                       LWIP_DBG_ON
-//#define TCP_INPUT_DEBUG                 LWIP_DBG_ON
-//#define TCP_FR_DEBUG                    LWIP_DBG_ON
-//#define TCP_RTO_DEBUG                   LWIP_DBG_ON
-//#define TCP_WND_DEBUG                   LWIP_DBG_ON
-//#define TCP_OUTPUT_DEBUG                LWIP_DBG_ON
-//#define TCP_RST_DEBUG                   LWIP_DBG_ON
-//#define TCP_QLEN_DEBUG                  LWIP_DBG_ON
-//#define TCPIP_DEBUG						LWIP_DBG_ON
+#define TCP_DEBUG                       LWIP_DBG_ON
+#define TCP_INPUT_DEBUG                 LWIP_DBG_ON
+#define TCP_FR_DEBUG                    LWIP_DBG_ON
+#define TCP_RTO_DEBUG                   LWIP_DBG_ON
+#define TCP_WND_DEBUG                   LWIP_DBG_ON
+#define TCP_OUTPUT_DEBUG                LWIP_DBG_ON
+#define TCP_RST_DEBUG                   LWIP_DBG_ON
+#define TCP_QLEN_DEBUG                  LWIP_DBG_ON
+#define TCPIP_DEBUG						LWIP_DBG_ON
+#define DHCP_DEBUG                      LWIP_DBG_ON
 #define CHAP_SUPPORT                    1
 #define PAP_SUPPORT                     1
-//#ifdef __cplusplus
-//
-//extern "C" {
-//#endif
-//extern void LWIP_PLATFORM_DIAG_(const char* msg, ...);
-//#define LWIP_PLATFORM_DIAG(a) LWIP_PLATFORM_DIAG_ a;
-//#ifdef __cplusplus
-//}
-//#endif
+#define LWIP_ARP                        0
+#define LWIP_TCPIP_TIMEOUT              10
+#define LWIP_AUTOIP                     0
+#ifdef __cplusplus
+
+extern "C" {
+#endif
+extern void LWIP_PLATFORM_DIAG_(const char* msg, ...);
+#define LWIP_PLATFORM_DIAG(a) LWIP_PLATFORM_DIAG_ a;
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __LWIPOPTS_H__ */
 
