@@ -149,17 +149,9 @@
                                     									
                                     <listOptionValue builtIn="false" value="&quot;../lib&quot;"/>
                                     									
-                                    <listOptionValue builtIn="false" value="../lib/lwip/src"/>
-                                    									
                                     <listOptionValue builtIn="false" value="../lib/lwip/src/include"/>
                                     									
-                                    <listOptionValue builtIn="false" value="../lib/lwip/src/include/lwip"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="../lib/lwip/src/include/ipv4"/>
-                                    									
                                     <listOptionValue builtIn="false" value="../lib/lwip/port"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="../lib/lwip/contrib"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;../freertos/freertos&quot;"/>
                                     									
