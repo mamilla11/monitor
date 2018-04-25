@@ -49,7 +49,7 @@
 #include "lwip/icmp.h"
 #include "lwip/netif.h"
 #include "lwip/sys.h"
-#include "lwip/timers.h"
+#include "lwip/timeouts.h"
 #include "lwip/inet_chksum.h"
 
 #if PING_USE_SOCKETS
@@ -286,7 +286,7 @@ ping_timeout(void *arg)
 {
   struct raw_pcb *pcb = (struct raw_pcb*)arg;
 
-	struct ip_addr ping_target;
+  ip4_addr_t ping_target;
 	IP4_ADDR(&ping_target, 93,92,200,31);
   //ip_addr_t ping_target = PING_TARGET;
 
@@ -311,7 +311,7 @@ ping_raw_init(void)
 void
 ping_send_now()
 {
-	struct ip_addr ping_target;
+	ip4_addr_t ping_target;
 	IP4_ADDR(&ping_target, 93,92,200,31);
   //ip_addr_t ping_target = PING_TARGET;
   LWIP_ASSERT("ping_pcb != NULL", ping_pcb != NULL);
