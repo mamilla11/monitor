@@ -472,13 +472,16 @@ void sys_sem_free( sys_sem_t *pxSemaphore )
  * Description:
  *      Initialize sys arch
  *---------------------------------------------------------------------------*/
-void sys_init(void)
+void sys_init(void) { }
+
+u32_t sys_jiffies(void)
 {
+	return xTaskGetTickCount();
 }
 
 u32_t sys_now(void)
 {
-	return xTaskGetTickCount()/ portTICK_PERIOD_MS;
+	return xTaskGetTickCount() * portTICK_PERIOD_MS;
 }
 
 /*---------------------------------------------------------------------------*
