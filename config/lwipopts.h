@@ -72,18 +72,12 @@ a lot of data that needs to be copied, this should be set high. */
    timeouts. */
 #define MEMP_NUM_SYS_TIMEOUT    10
 
-
 /* ---------- Pbuf options ---------- */
 /* PBUF_POOL_SIZE: the number of buffers in the pbuf pool. */
 #define PBUF_POOL_SIZE          12
 
 /* PBUF_POOL_BUFSIZE: the size of each pbuf in the pbuf pool. */
 #define PBUF_POOL_BUFSIZE       512
-
-
-/* ---------- TCP options ---------- */
-#define LWIP_TCP                1
-#define TCP_TTL                 255
 
 /* Controls if TCP should queue segments that arrive out of
    order. Define to 0 if your device is low on memory. */
@@ -102,89 +96,24 @@ a lot of data that needs to be copied, this should be set high. */
 
 /* TCP receive window. */
 #define TCP_WND                 (2*TCP_MSS)
-
-
-/* ---------- ICMP options ---------- */
-#define LWIP_ICMP                       1
-
-
-/* ---------- DHCP options ---------- */
-/* Define LWIP_DHCP to 1 if you want DHCP configuration of
-   interfaces. DHCP is not implemented in lwIP 0.5.1, however, so
-   turning this on does currently not work. */
-#define LWIP_DHCP               0
-
 /* ---------- UDP options ---------- */
 #define LWIP_UDP                0
 #define UDP_TTL                 255
-
-
 /* ---------- Statistics options ---------- */
 #define LWIP_STATS         1
-//#define LWIP_PROVIDE_ERRNO 0
-
-
-/*
-   --------------------------------------
-   ---------- Checksum options ----------
-   --------------------------------------
-*/
-
-/*
-The STM32F4x7 allows computing and verifying the IP, UDP, TCP and ICMP checksums by hardware:
- - To use this feature let the following define uncommented.
- - To disable it and process by CPU comment the  the checksum.
-*/
-#define CHECKSUM_BY_HARDWARE
-
-
-#ifdef CHECKSUM_BY_HARDWARE
-  /* CHECKSUM_GEN_IP==0: Generate checksums by hardware for outgoing IP packets.*/
-  #define CHECKSUM_GEN_IP                 0
-  /* CHECKSUM_GEN_UDP==0: Generate checksums by hardware for outgoing UDP packets.*/
-  #define CHECKSUM_GEN_UDP                0
-  /* CHECKSUM_GEN_TCP==0: Generate checksums by hardware for outgoing TCP packets.*/
-  #define CHECKSUM_GEN_TCP                0
-  /* CHECKSUM_CHECK_IP==0: Check checksums by hardware for incoming IP packets.*/
-  #define CHECKSUM_CHECK_IP               0
-  /* CHECKSUM_CHECK_UDP==0: Check checksums by hardware for incoming UDP packets.*/
-  #define CHECKSUM_CHECK_UDP              0
-  /* CHECKSUM_CHECK_TCP==0: Check checksums by hardware for incoming TCP packets.*/
-  #define CHECKSUM_CHECK_TCP              0
-#else
-  /* CHECKSUM_GEN_IP==1: Generate checksums in software for outgoing IP packets.*/
-  #define CHECKSUM_GEN_IP                 1
-  /* CHECKSUM_GEN_UDP==1: Generate checksums in software for outgoing UDP packets.*/
-  #define CHECKSUM_GEN_UDP                1
-  /* CHECKSUM_GEN_TCP==1: Generate checksums in software for outgoing TCP packets.*/
-  #define CHECKSUM_GEN_TCP                1
-  /* CHECKSUM_CHECK_IP==1: Check checksums in software for incoming IP packets.*/
-  #define CHECKSUM_CHECK_IP               1
-  /* CHECKSUM_CHECK_UDP==1: Check checksums in software for incoming UDP packets.*/
-  #define CHECKSUM_CHECK_UDP              1
-  /* CHECKSUM_CHECK_TCP==1: Check checksums in software for incoming TCP packets.*/
-  #define CHECKSUM_CHECK_TCP              1
-#endif
-
-
+#define LWIP_PROVIDE_ERRNO 1
 /*
    ----------------------------------------------
    ---------- Sequential layer options ----------
    ----------------------------------------------
 */
-/**
- * LWIP_NETCONN==1: Enable Netconn API (require to use api_lib.c)
- */
-#define LWIP_NETCONN                    1
+#define LWIP_NETCONN                    0
 
 /*
    ------------------------------------
    ---------- Socket options ----------
    ------------------------------------
 */
-/**
- * LWIP_SOCKET==1: Enable Socket API (require to use sockets.c)
- */
 #define LWIP_SOCKET                     0
 
 /*
@@ -192,36 +121,8 @@ The STM32F4x7 allows computing and verifying the IP, UDP, TCP and ICMP checksums
    ---------- DEBUG options ----------
    -----------------------------------
 */
-
-//#define LWIP_DEBUG                      0
-
-
-/*
-   ---------------------------------
-   ---------- OS options ----------
-   ---------------------------------
-*/
-
-#define TCPIP_THREAD_STACKSIZE          2048
-#define TCPIP_MBOX_SIZE                 5
-#define DEFAULT_UDP_RECVMBOX_SIZE       2000
-#define DEFAULT_TCP_RECVMBOX_SIZE       2000
-#define DEFAULT_ACCEPTMBOX_SIZE         2000
-#define DEFAULT_THREAD_STACKSIZE        500
-#define TCPIP_THREAD_PRIO               1//(configMAX_PRIORITIES - 2)
-
-/*
-   ---------------------------------
-   ---------- PPPOS options ----------
-   ---------------------------------
-*/
-#define PPP_SUPPORT                     1
-#define PPP_THREAD_NAME                 "ppp"
-#define PPP_THREAD_STACKSIZE            5000
-#define PPP_THREAD_PRIO                 1//2
 #define LWIP_DEBUG                      1
 #define PPP_DEBUG                       LWIP_DBG_ON
-#define SYS_LIGHTWEIGHT_PROT            0
 #define TCP_DEBUG                       LWIP_DBG_ON
 #define TCP_INPUT_DEBUG                 LWIP_DBG_ON
 #define TCP_FR_DEBUG                    LWIP_DBG_ON
@@ -231,12 +132,37 @@ The STM32F4x7 allows computing and verifying the IP, UDP, TCP and ICMP checksums
 #define TCP_RST_DEBUG                   LWIP_DBG_ON
 #define TCP_QLEN_DEBUG                  LWIP_DBG_ON
 #define TCPIP_DEBUG						LWIP_DBG_ON
-#define DHCP_DEBUG                      LWIP_DBG_ON
-#define CHAP_SUPPORT                    1
+#define PING_DEBUG                      LWIP_DBG_ON
+/*
+   ---------------------------------
+   ---------- OS options ----------
+   ---------------------------------
+*/
+#define TCPIP_THREAD_STACKSIZE          2048
+#define TCPIP_MBOX_SIZE                 5
+#define DEFAULT_UDP_RECVMBOX_SIZE       2000
+#define DEFAULT_TCP_RECVMBOX_SIZE       2000
+#define DEFAULT_ACCEPTMBOX_SIZE         2000
+#define DEFAULT_THREAD_STACKSIZE        500
+#define TCPIP_THREAD_PRIO               1
+#define PPP_SUPPORT                     1
+#define PPP_THREAD_NAME                 "ppp"
+#define PPP_THREAD_STACKSIZE            5000
+#define PPP_THREAD_PRIO                 1
+/*
+   ---------------------------------
+   ---------- PPPOS options ----------
+   ---------------------------------
+*/
+#define SYS_LIGHTWEIGHT_PROT            1
+#define CHAP_SUPPORT                    0
 #define PAP_SUPPORT                     1
 #define LWIP_ARP                        0
-#define LWIP_TCPIP_TIMEOUT              10
-#define LWIP_AUTOIP                     0
+#define LWIP_TCPIP_CORE_LOCKING         0
+#define VJ_SUPPORT                      1
+#define PPP_USE_PBUF_RAM                1
+#define CCP_SUPPORT                     1
+#define LWIP_RAW                        1
 #ifdef __cplusplus
 
 extern "C" {
