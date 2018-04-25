@@ -11,10 +11,6 @@
 #include <timers/OneShotTimer.hpp>
 #include <utils/Logger.h>
 
-extern "C" {
-void linkStatusCB(void * ctx, int errCode, void * arg);
-}
-
 namespace net {
 
 namespace base {

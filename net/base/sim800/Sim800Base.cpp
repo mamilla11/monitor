@@ -1,11 +1,5 @@
 #include "Sim800Base.h"
 
-#include "lwip/sio.h"
-#include "lwip/inet.h"
-#include "netif/ppp/ppp.h"
-
-static volatile bool stop = false;
-
 extern "C" {
 void LWIP_PLATFORM_DIAG_(const char* msg, ...)
 {
@@ -16,107 +10,8 @@ void LWIP_PLATFORM_DIAG_(const char* msg, ...)
 	net::base::sim800::Sim800Base::_logger.add_str(1, temp);
 	va_end(arglist);
 }
-
-
-u32_t sio_read(sio_fd_t fd, u8_t *data, u32_t len)
-{
-	uint32_t i = 0;
-	int byte   = 0;
-
-	stop = false;
-	int n = 0;
-
-	while ((not stop) && (n < 1))
-	{
-		byte = net::base::sim800::Sim800Base::recv_byte();
-		if (byte == -1)
-			n++;
-		else
-			data[i++] = byte;
-	}
-
-	if(i > 0) {
-
-		net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "[ IN]");
-		net::base::sim800::Sim800Base::_logger.add_hex(utils::Logger::Flag::DEBG, data, i);
-	}
-
-	return i;
-
-//	while (true)
-//	{
-//		byte = net::base::sim800::Sim800Base::recv_byte();
-//
-//		if ((byte == -1)) {
-//			break;
-//		}
-//
-//		data[i++] = byte;
-//
-//		if (stop || (i == len))
-//		{
-//			stop = false;
-//			break;
-//		}
-//	}
-//
-//	if(i > 0) {
-//
-//		net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "[ IN]");
-//		net::base::sim800::Sim800Base::_logger.add_hex(utils::Logger::Flag::DEBG, data, i);
-//	}
-//
-//	return i;
 }
 
-u32_t sio_write(sio_fd_t fd, u8_t *data, u32_t len)
-{
-	net::base::sim800::Sim800Base::send_raw_hex(data, len);
-	return len;
-}
-
-void sio_read_abort(sio_fd_t fd)
-{
-	stop = true;
-	//net::base::sim800::Sim800Base::flush();
-}
-
-u32_t sys_jiffies(void)
-{
-	return xTaskGetTickCount();
-}
-
-void linkStatusCB(void * ctx, int errCode, void * arg)
-{
-	bool *connected = (bool*)ctx;
-
-	struct ppp_addrs * addrs = (ppp_addrs *)arg;
-
-	switch (errCode)
-	{
-	case PPPERR_NONE: { /* We are connected */
-		net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "ip_addr = %s\r\n", inet_ntoa(addrs->our_ipaddr));
-		net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "his_ip_addr = %s\r\n", inet_ntoa(addrs->his_ipaddr));
-		net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "netmask = %s\r\n", inet_ntoa(addrs->netmask));
-		net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "dns1 = %s\r\n", inet_ntoa(addrs->dns1));
-		net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "dns2 = %s\r\n", inet_ntoa(addrs->dns2));
-		*connected = 1;
-		break;
-	}
-	case PPPERR_CONNECT: {
-		printf("lost connection\r\n"); /* just wait */
-		*connected = 0;
-		break;
-	}
-	default: { /* We have lost connection */
-		printf("connection error\r\n"); /* just wait */
-		*connected = 0;
-		break;
-	}
-	}
-}
-
-} // extern "C"
 namespace net {
 
 namespace base {
@@ -330,9 +225,6 @@ void Sim800Base::send_raw_hex(const uint8_t *buffer, uint32_t length)
 {
 	for (uint32_t symb = 0; symb < length; symb++)
 		_usart->write_blocking(buffer[symb]);
-
-	_logger.add_str(utils::Logger::Flag::DEBG, "[ OUT]");
-	_logger.add_hex(utils::Logger::Flag::DEBG, (uint8_t*)buffer, length);
 }
 
 bool Sim800Base::search(const char *needle)
