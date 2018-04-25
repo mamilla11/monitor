@@ -491,16 +491,6 @@ bool Gsm::activate_pdp_context()
 	return(true);
 }
 
-bool Gsm::test()
-{
-	send_raw("ATD*99***1#\r\n");
-
-	if (recv_string(TIMEOUT_10S, "ANY") != CommandStatus::SUCCESS)
-		return false;
-
-	return true;
-}
-
 bool Gsm::enter_data_state(const char* l2p, uint8_t cid)
 {
 	char at[MAX_AT_LENGTH];

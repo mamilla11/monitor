@@ -213,8 +213,6 @@ public:
 
     bool activate_pdp_context();
 
-    bool test();
-
     bool enter_data_state(const char* l2p, uint8_t cid);
 
 private:

@@ -34,56 +34,33 @@ bool GsmModule::turn_on(hw::SimSwitcher::Sim sim)
 #endif
 
 	if (not set_power(true)) {
-		//_logger.add_str(utils::Logger::Flag::DEBG, "Turn on modem FAIL");
+		_logger.add_str(utils::Logger::Flag::DEBG, "Turn on modem FAIL");
 		return false;
 	}
 
-	//_logger.add_str(utils::Logger::Flag::DEBG, "Turn on modem OK");
+	_logger.add_str(utils::Logger::Flag::DEBG, "Turn on modem OK");
 
 
 	if (not disable_echo()) {
-		//_logger.add_str(utils::Logger::Flag::DEBG, "Disable echo FAIL: %s", received_string.data());
+		_logger.add_str(utils::Logger::Flag::DEBG, "Disable echo FAIL: %s", received_string.data());
 		return false;
 	}
 
-	//_logger.add_str(utils::Logger::Flag::DEBG, "Disable echo OK");
+	_logger.add_str(utils::Logger::Flag::DEBG, "Disable echo OK");
 
 	if (not wait_net_registration()) {
-		//_logger.add_str(utils::Logger::Flag::DEBG, "Net registration FAIL: %s", received_string.data());
+		_logger.add_str(utils::Logger::Flag::DEBG, "Net registration FAIL: %s", received_string.data());
 		return false;
 	}
 
-	//_logger.add_str(utils::Logger::Flag::DEBG, "Net registration OK");
-
-//	if (not wait_gprs_attached()) {
-//		_logger.add_str(utils::Logger::Flag::DEBG, "GPRS attach FAIL: %s", received_string.data());
-//		return false;
-//	}
-//
-//	_logger.add_str(utils::Logger::Flag::DEBG, "GPRS attach OK");
-
-
-//	if (not define_pdp_context(1, "IP", "internet.beeline.ru")) {
-//		_logger.add_str(utils::Logger::Flag::DEBG, "Define pdp context FAIL: %s", received_string.data());
-//		return false;
-//	}
-//
-//	_logger.add_str(utils::Logger::Flag::DEBG, "Define pdp context OK");
-
-//	if (not test())
-//		return false;
-
-//	if (not activate_pdp_context())
-//		return false;
+	_logger.add_str(utils::Logger::Flag::DEBG, "Net registration OK");
 
 	if (not enter_data_state("PPP", 1)) {
-		//_logger.add_str(utils::Logger::Flag::DEBG, "Enter data state FAIL: %s", received_string.data());
+		_logger.add_str(utils::Logger::Flag::DEBG, "Enter data state FAIL: %s", received_string.data());
 		return false;
 	}
 
-	//_logger.add_str(utils::Logger::Flag::DEBG, "Enter data state OK");
-
-
+	_logger.add_str(utils::Logger::Flag::DEBG, "Enter data state OK");
 
 	return true;
 }
