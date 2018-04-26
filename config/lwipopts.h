@@ -122,17 +122,17 @@ a lot of data that needs to be copied, this should be set high. */
    -----------------------------------
 */
 #define LWIP_DEBUG                      1
-#define PPP_DEBUG                       LWIP_DBG_ON
+//#define PPP_DEBUG                       LWIP_DBG_ON
 #define TCP_DEBUG                       LWIP_DBG_ON
 #define TCP_INPUT_DEBUG                 LWIP_DBG_ON
-#define TCP_FR_DEBUG                    LWIP_DBG_ON
-#define TCP_RTO_DEBUG                   LWIP_DBG_ON
-#define TCP_WND_DEBUG                   LWIP_DBG_ON
-#define TCP_OUTPUT_DEBUG                LWIP_DBG_ON
-#define TCP_RST_DEBUG                   LWIP_DBG_ON
-#define TCP_QLEN_DEBUG                  LWIP_DBG_ON
-#define TCPIP_DEBUG						LWIP_DBG_ON
-#define PING_DEBUG                      LWIP_DBG_ON
+//#define TCP_FR_DEBUG                    LWIP_DBG_ON
+//#define TCP_RTO_DEBUG                   LWIP_DBG_ON
+//#define TCP_WND_DEBUG                   LWIP_DBG_ON
+//#define TCP_OUTPUT_DEBUG                LWIP_DBG_ON
+//#define TCP_RST_DEBUG                   LWIP_DBG_ON
+//#define TCP_QLEN_DEBUG                  LWIP_DBG_ON
+//#define TCPIP_DEBUG						LWIP_DBG_ON
+//#define PING_DEBUG                      LWIP_DBG_ON
 /*
    ---------------------------------
    ---------- OS options ----------

@@ -99,17 +99,9 @@ void ppp_link_status_cb(ppp_pcb *pcb, int err_code, void *ctx)
 
 u32_t ppp_output_cb(ppp_pcb *pcb, u8_t *data, u32_t len, void *ctx)
 {
-//	if (data[0] != 0x7E) {
-//		net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "[OUT FAIL]");
-//		net::base::sim800::Sim800Base::_logger.add_hex(utils::Logger::Flag::DEBG, data, len);
-//		return 0;
-//	}
-
-	net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "[OUT]");
-	net::base::sim800::Sim800Base::_logger.add_hex(utils::Logger::Flag::DEBG, data, len);
-	//taskENTER_CRITICAL();
+	//net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "[OUT]");
+	//net::base::sim800::Sim800Base::_logger.add_hex(utils::Logger::Flag::DEBG, data, len);
 	net::base::sim800::Sim800Base::send_raw_hex(data, len);
-	//taskEXIT_CRITICAL();
 	return len;
 }
 
@@ -132,11 +124,11 @@ u32_t ppp_input_cb(u8_t *data, int len)
 			break;
 	}
 
-	if (i > 0) {
+	//if (i > 0) {
 
-		net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "[IN]");
-		net::base::sim800::Sim800Base::_logger.add_hex(utils::Logger::Flag::DEBG, data, i);
-	}
+		//net::base::sim800::Sim800Base::_logger.add_str(utils::Logger::Flag::DEBG, "[IN]");
+		//net::base::sim800::Sim800Base::_logger.add_hex(utils::Logger::Flag::DEBG, data, i);
+	//}
 
 	return i;
 }
@@ -263,19 +255,32 @@ err_t HttpTask::tcp_connected(void *arg, struct tcp_pcb *pcb, err_t err)
 {
 	logger.add_str(utils::Logger::Flag::DEBG, "Connection Established");
 
-	char string[50] = "{\"hop\": 0}";
+	char string[150] = "GET /about/ HTTP/1.1\r\nHost: weather.thirdpin.ru\r\n\r\n";
 	LWIP_UNUSED_ARG(arg);
-//	if(err == ERR_OK)
-//	{
-//		tcp_write(pcb, string, strlen(string), 0);
-//		tcp_output(pcb);
-//	}
+	if(err == ERR_OK)
+	{
+		err = tcp_write(pcb, string, strlen(string), TCP_WRITE_FLAG_COPY);
+		if (err)
+		{
+			logger.add_str(utils::Logger::Flag::DEBG, "TCP_WRITE ERROR");
+			return err;
+		}
+		err = tcp_output(pcb);
+		if (err)
+		{
+			logger.add_str(utils::Logger::Flag::DEBG, "TCP_OUTPUT ERROR");
+			return err;
+		}
+	}
+
+	logger.add_str(utils::Logger::Flag::DEBG, "TCP_DATA_SENT OK");
 	return err;
 }
 
 err_t HttpTask::tcp_client_sent(void *arg, struct tcp_pcb *pcb, u16_t len)
 {
 	LWIP_UNUSED_ARG(arg);
+	logger.add_str(utils::Logger::Flag::DEBG, "TCP_CLIENT_SENT OK");
 	return ERR_OK;
 }
 
