@@ -115,6 +115,8 @@
                                     									
                                     <listOptionValue builtIn="false" value="&quot;../config&quot;"/>
                                     									
+                                    <listOptionValue builtIn="false" value="../lib/mbedtls"/>
+                                    									
                                     <listOptionValue builtIn="false" value="../lib/lwip/src"/>
                                     									
                                     <listOptionValue builtIn="false" value="../lib/lwip/src/include"/>
@@ -148,6 +150,8 @@
                                     <listOptionValue builtIn="false" value="../sys"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;../lib&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="../lib/mbedtls"/>
                                     									
                                     <listOptionValue builtIn="false" value="../lib/lwip/src/include"/>
                                     									
@@ -289,7 +293,7 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="lib/lwip/src/core/ipv6|lib/lwip/src/include/ipv6|lib/lwip/src/apps|freertos/freertos/heap_1.c|freertos/freertos-addons/Linux|freertos/freertos-addons/c|lib/libopencm3" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="lib/WolfSSL/wolfcrypt/src/port|lib/WolfSSL/wolfcrypt/src/wc_port.c|lib/lwip/src/core/ipv6|lib/lwip/src/include/ipv6|lib/lwip/src/apps|freertos/freertos/heap_1.c|freertos/freertos-addons/Linux|freertos/freertos-addons/c|lib/libopencm3" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         					
                     </sourceEntries>
                     				
@@ -453,7 +457,7 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="lib/lwip/src/core/ipv6|lib/lwip/src/include/ipv6|lib/lwip/src/apps|freertos/freertos/heap_1.c|freertos/freertos-addons/Linux|freertos/freertos-addons/c|lib/libopencm3" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="lib/WolfSSL/wolfcrypt/src/port|lib/WolfSSL/wolfcrypt/src/wc_port.c|lib/lwip/src/core/ipv6|lib/lwip/src/include/ipv6|lib/lwip/src/apps|freertos/freertos/heap_1.c|freertos/freertos-addons/Linux|freertos/freertos-addons/c|lib/libopencm3" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         					
                     </sourceEntries>
                     				

@@ -24,7 +24,6 @@
 #ifndef __LWIPOPTS_H__
 #define __LWIPOPTS_H__
 
-//#include "net/base/sim800/Sim800Base.h"
 /**
  * SYS_LIGHTWEIGHT_PROT==1: if you want inter-task protection for certain
  * critical regions during buffer allocation, deallocation and memory
@@ -50,7 +49,7 @@
 
 /* MEM_SIZE: the size of the heap memory. If the application will send
 a lot of data that needs to be copied, this should be set high. */
-#define MEM_SIZE                (5*1024)
+//#define MEM_SIZE                (5*1024)
 
 /* MEMP_NUM_PBUF: the number of memp struct pbufs. If the application
    sends a lot of data out of ROM (or other static memory), this
@@ -77,22 +76,24 @@ a lot of data that needs to be copied, this should be set high. */
 #define PBUF_POOL_SIZE          12
 
 /* PBUF_POOL_BUFSIZE: the size of each pbuf in the pbuf pool. */
-#define PBUF_POOL_BUFSIZE       512
+//#define PBUF_POOL_BUFSIZE       512
 
 /* Controls if TCP should queue segments that arrive out of
    order. Define to 0 if your device is low on memory. */
 #define TCP_QUEUE_OOSEQ         0
 
 /* TCP Maximum segment size. */
-#define TCP_MSS                 (1500 - 40)	  /* TCP_MSS = (Ethernet MTU - IP header size - TCP header size) */
+//#define TCP_MSS                 (1500 - 40)	  /* TCP_MSS = (Ethernet MTU - IP header size - TCP header size) */
 
 /* TCP sender buffer space (bytes). */
-#define TCP_SND_BUF             (5*TCP_MSS)
+///#define TCP_SND_BUF             (5*TCP_MSS)
 
 /*  TCP_SND_QUEUELEN: TCP sender buffer space (pbufs). This must be at least
   as much as (2 * TCP_SND_BUF/TCP_MSS) for things to work. */
 
-#define TCP_SND_QUEUELEN        (4* TCP_SND_BUF/TCP_MSS)
+//#define TCP_SND_QUEUELEN        (4* TCP_SND_BUF/TCP_MSS)
+
+#define TCP_DEFAULT_LISTEN_BACKLOG 0
 
 /* TCP receive window. */
 #define TCP_WND                 (2*TCP_MSS)
@@ -114,40 +115,31 @@ a lot of data that needs to be copied, this should be set high. */
    ---------- Socket options ----------
    ------------------------------------
 */
-#define LWIP_SOCKET                     0
+#define LWIP_SOCKET                     1
 
 /*
    -----------------------------------
    ---------- DEBUG options ----------
    -----------------------------------
 */
-#define LWIP_DEBUG                      1
-//#define PPP_DEBUG                       LWIP_DBG_ON
-#define TCP_DEBUG                       LWIP_DBG_ON
-#define TCP_INPUT_DEBUG                 LWIP_DBG_ON
-//#define TCP_FR_DEBUG                    LWIP_DBG_ON
-//#define TCP_RTO_DEBUG                   LWIP_DBG_ON
-//#define TCP_WND_DEBUG                   LWIP_DBG_ON
+#define LWIP_DEBUG                      0
+//#define TCP_DEBUG                       LWIP_DBG_ON
+//#define TCP_INPUT_DEBUG                 LWIP_DBG_ON
 //#define TCP_OUTPUT_DEBUG                LWIP_DBG_ON
-//#define TCP_RST_DEBUG                   LWIP_DBG_ON
-//#define TCP_QLEN_DEBUG                  LWIP_DBG_ON
-//#define TCPIP_DEBUG						LWIP_DBG_ON
-//#define PING_DEBUG                      LWIP_DBG_ON
 /*
    ---------------------------------
    ---------- OS options ----------
    ---------------------------------
 */
-#define TCPIP_THREAD_STACKSIZE          2048
+#define TCPIP_THREAD_STACKSIZE          512
 #define TCPIP_MBOX_SIZE                 5
-#define DEFAULT_UDP_RECVMBOX_SIZE       2000
+#define DEFAULT_UDP_RECVMBOX_SIZE       0//2000
 #define DEFAULT_TCP_RECVMBOX_SIZE       2000
 #define DEFAULT_ACCEPTMBOX_SIZE         2000
-#define DEFAULT_THREAD_STACKSIZE        500
 #define TCPIP_THREAD_PRIO               1
 #define PPP_SUPPORT                     1
 #define PPP_THREAD_NAME                 "ppp"
-#define PPP_THREAD_STACKSIZE            5000
+#define PPP_THREAD_STACKSIZE            1024
 #define PPP_THREAD_PRIO                 1
 /*
    ---------------------------------
@@ -155,17 +147,14 @@ a lot of data that needs to be copied, this should be set high. */
    ---------------------------------
 */
 #define SYS_LIGHTWEIGHT_PROT            1
-#define CHAP_SUPPORT                    0
 #define PAP_SUPPORT                     1
 #define LWIP_ARP                        0
-#define LWIP_TCPIP_CORE_LOCKING         0
 #define VJ_SUPPORT                      1
-#define PPP_USE_PBUF_RAM                1
 #define CCP_SUPPORT                     1
-#define LWIP_RAW                        1
-#ifdef __cplusplus
 
-extern "C" {
+#ifdef __cplusplus
+extern "C"
+{
 #endif
 extern void LWIP_PLATFORM_DIAG_(const char* msg, ...);
 #define LWIP_PLATFORM_DIAG(a) LWIP_PLATFORM_DIAG_ a;
